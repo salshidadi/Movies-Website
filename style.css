@@ -1,0 +1,527 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+body{
+    
+    background-color: #020b1c;
+    font-family: "Poppins", sans-serif;
+}
+
+.header{
+    width: 100%;
+}
+    
+.fade{
+    width: 100%;
+    height: 120vh;
+    background: rgb(2, 11, 28);
+    background: linear-gradient(180deg, rgba(5,20,49,0.9044410000328256) 0%, rgba(9,12,89,0.4758695714613971) 33%, rgb(2, 11, 28) 86%);
+    position: absolute;
+    z-index: 0;
+    
+}
+
+.cover{
+    width: 100%;
+    height: 120vh;
+    object-fit: cover;
+}
+
+
+
+
+
+nav{
+    position: absolute;
+    z-index: 3;
+
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 3rem;
+
+    /*backdrop-filter: blur(10px); /* For older versions of Safari */
+
+
+    @media(width <= 40em){
+        padding: 1rem;
+    }
+    
+}
+
+.logo{
+    width: 180px;
+
+    @media(width <= 40em){
+        width: 100px;
+    }
+}
+
+.btn{
+    margin-left: 5px;
+    text-decoration: none;
+    padding: 10px 15px;
+    color: white;
+    text-align: center;
+    font-size: 18px;
+    transition: 0.3s;
+    font-family: "Poppins", sans-serif;
+    
+}
+
+.profile-photo{
+    border-radius: 100px;
+    margin-left: 20px;
+}
+
+.logedin{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-3{
+    font-weight: bold;
+    color:#171c3b;
+    background: linear-gradient(90deg, var(--c1, #eaf665), var(--c2, #85f5fd) 51%, var(--c1, #eaf665)) var(--x, 0)/ 200%;
+    border-radius: 30px;
+    padding: 10px 30px;
+
+    @media(width <= 40em){
+        display: none;
+    }
+}
+
+.btn:hover { --x: 100%; }
+
+.btn-3{
+    --c1: #eaf665;
+    --c2: #85f5fd;
+}
+
+.btn-2:hover{
+    color: #85f5fd;
+}
+
+.btn-1:hover{
+    color: #85f5fd;
+}
+
+
+
+.movie-cards{
+    padding: 4rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: 1fr;
+    grid-gap: 35px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+
+    @media(width >= 40em){
+        grid-template-columns: repeat(2, 1fr);
+        padding: 6rem;
+    }
+
+    @media(width >= 85em){
+        grid-template-columns:repeat(5,240px);
+        padding: 8em;
+    }
+}
+
+
+
+
+.info{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: 40%;
+    position: absolute;
+    z-index: 2;
+    top: 25%;
+    left: 7%;
+
+    @media(width <= 40em){
+        width: 70%;
+        top: 25%;
+        
+    }
+}
+
+
+.movie-title{
+    font-size: 7rem;
+    color: white;
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    line-height: 9rem;
+    text-align: left;
+
+    @media(width <= 40em){
+        font-size: 4rem;
+        line-height: 4rem;
+    }
+}
+
+.movie-dsc{
+    text-align: left;
+    margin-top: 2rem;
+    color: white;
+    font-family: "Poppins", sans-serif;
+    font-size: 0.8rem;
+}
+
+
+.card{
+    display: flex;
+    flex-direction: column;
+    transition: 0.3s;
+}
+
+
+
+.card:hover{
+    scale: 125%;
+    z-index: 2;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.473), 0 6px 20px 0 rgba(0, 0, 0, 0.381);
+
+}
+
+.card-poster{
+    border-radius: 10px 10px 0px 0px;
+    width: 100%;
+}
+
+.rate{
+    align-self:self-end;
+
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    z-index: 1;
+
+    color: aliceblue;
+    font-weight: 500;
+    font-size: 0.8rem;
+
+    border: 4px solid #1f2651;
+
+    margin: 10px 10px;
+
+    width: 45px;
+    height: 45px;
+    
+    border-radius: 50px;
+
+    cursor: pointer;
+    
+    background-color: #111427;
+}
+
+.heigh{
+    border-color: #1db185;
+}
+
+.mediume{
+    border-color: #c9bf2d;
+}
+
+.low{
+    border-color: #ae371f;
+}
+
+.movie-info{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    width: 100%;
+    gap: 10%;
+
+    background: rgb(17,20,39);
+    background: linear-gradient(339deg, #111427 0%, rgba(26,33,79,1) 74%);
+    
+
+
+    padding: 1rem;
+    border-radius: 0px 0px 10px 10px;
+
+    flex-wrap: wrap;
+    
+}
+
+.towBtnContainer{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+}
+
+
+.towBtn{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+    color: #b4b9d2;
+    text-align: left;
+    font-size: 0.8rem;
+    border: none;
+    width: 50%;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 20px;
+    background: #111321;
+    border: 2px #1f2651 solid;
+}
+
+.wL:hover{
+   background:  #314267;
+   border: 2px #314267 solid;
+}
+
+.mF:hover{
+    background: #4e2943;
+    border: 2px #4e2943 solid;
+}
+
+.wActivited{
+    background:  #314267;
+    border: 2px #314267 solid;
+}
+
+.fActivited{
+    background: #4e2943;
+    border: 2px #4e2943 solid;
+}
+
+
+.card-titl{
+    color: aliceblue;
+    font-family: "Poppins", sans-serif;
+    font-size: 1rem;
+    width: 70%;
+    text-align: left;
+}
+
+.watch-trailer{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+    border: none;
+    border-radius: 5px;
+    padding: 1rem;
+    width: 20%;
+    background: linear-gradient(90deg,#eaf665 ,#85f5fd);
+    cursor: pointer;
+    transition:ease-out;
+    font-weight: 600;
+    gap: 5px;
+
+    @media(width <= 40em){
+        width: 50%;
+    }
+}
+
+
+.mainBtn{
+    width: 20%;
+    padding: 0.8rem;
+    border-radius: 500px;
+}
+
+
+
+.watch-trailer:hover{
+    background: #eaf665;
+}
+
+
+
+.detiles{
+    margin-top: 2rem;
+}
+
+
+
+.trailler-c{
+    cursor: pointer;
+    position: absolute;
+    z-index: 4;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+
+    width: 100%;
+    height: 450%;
+    background-color: #080915d4;
+    
+    animation: fadeInAnimation ease-in 0.5s;
+
+}
+
+.trailler   {
+    position: sticky;
+    top: 20%;
+    border-radius: 10px;
+    width: 50%;
+    height: 15%;
+
+    @media(width <= 85em){
+        width: 80%;
+    }
+
+    @media(width <= 40em){
+        width: 80%;
+    }
+}
+
+
+.trailler iframe{
+    border-radius: 10px;
+    border-color: #65d2f609;
+}
+
+.hide{
+    animation: fadeInAnimationOut ease-out 0.9s;
+    opacity: 0;
+    display: none;
+}
+
+
+
+.search-container{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+
+    @media(width <= 40em){
+        padding: 1rem;
+    }
+}
+
+.topAndTrend{
+  width: 20%;
+  display: flex;
+  gap: 5px;
+
+  @media(width <= 40em){
+    width: 100%;
+}
+}
+
+.search-container form{
+    width: 50%;
+
+    @media(width <= 40em){
+        width: 100%;
+    }
+    
+}
+
+
+.search-bar{
+    width: 100%;
+    padding: 2rem;
+    border-radius: 50px;
+    background-color: #171c3968;
+    border: 2px #2a325c solid;
+}
+
+
+.search-option{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+}
+
+
+.explore{
+    color: white;
+    font-size: 4rem;
+    font-weight: 700;
+    color: #85f5fd;
+}
+
+
+.flterStyle{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    
+    cursor: pointer;
+
+    gap: 2px;
+    width: 100%;
+    padding: 1rem;
+    border-radius: 50px;
+    background: rgb(17,20,39);
+    background: linear-gradient(339deg, rgba(17,20,39,1) 0%, rgba(26,33,79,1) 74%);
+    border: 2px #060814 solid;
+    color: aliceblue;
+}
+
+.flterStyle:hover{
+    background-color: #0e164b;
+    border: 2px #4a5797 solid;
+}
+
+.fire{
+    margin-bottom: 8px;
+}
+
+
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+
+@keyframes fadeInAnimationOut {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+
+
+.footer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: aliceblue;
+
+    border-radius: 100px 100px 0 0;
+    width: 100%;
+    background-color: #050815;
+    padding: 2rem 10rem;
+}
+
+
