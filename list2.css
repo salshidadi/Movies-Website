@@ -120,7 +120,7 @@ nav{
 
 .one-card{
     width: 100%;
-    padding: 2rem;
+    padding: 5rem;
     border-bottom: 2px solid #1b1f3a;
     align-items: start;
 
@@ -129,36 +129,128 @@ nav{
 
 
 .poster img{
-    width: 160px;
+    width: 168px;
     border-radius: 10px;
 }
 
 .data{
-    width: 100%;
+    width: 70%;
     margin-left: 1rem;
 }
+
+.rate{
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid #ffc107;
+    color: #ffc107;
+    background: none;
+    padding: 10px;
+    width: 15%;
+    border-radius: 50px;
+    transition: 0.3s;
+}
+
+#rate-text{
+    color: #ffecb3;
+}
+
+.rate:hover{
+    color: #1b1f3a;
+    background: #ffc107;
+}
+
 
 .title{
     font-size: 2rem;
     font-weight: 600;
+    margin-bottom: 0.8rem;
 }
 
-.partone span{
+.data-set, p{
     display: flex;
+    align-items: center;
+}
+
+.data-set img{
+    margin-right: 10px;
+}
+
+.part-one span{
     gap: 20px;
+    color: #9ea8cb;
+}
+
+.part-one span:last-child{
     margin-top: 10px;
 }
 
 .partTow{
-    margin-top: 2rem;
+    margin-top: 1.6rem;
     display: flex;
     gap: 10px;
 }
 
 .partTow p{
-    
-    padding: 1rem;
+    padding: 0.8rem;
+    width: 15%;
     background-color: #0d0f20;
-    border-radius: 10px;
-    
+    border-radius: 50px;
+    font-size: 0.8rem;
+    justify-content: center;
+    color: #bdc6e3;
+}
+
+.description{
+    margin-top: 1.6rem;
+    width: 80%;
+    font-size: 0.8rem;
+    color: #9ea8cb;
+}
+
+.options{
+    width: 30%;
+}
+
+.towBtn{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    text-align: left;
+    color: #d4d9ed;
+    font-size: 1rem;
+    font-weight: 500;
+    border: none;
+    width: 100%;
+    border-radius: 5px;
+    padding: 2.5rem;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.towBtn img{
+    margin-right: 20px;
+}
+
+.wL{
+    background: #5e283c;
+    transition: 0.3s;
+}
+
+.mF{
+    background: #0d0f20;
+    transition: 0.3s;
+}
+
+
+.wL:hover {
+    background: #7b334e;
+}
+
+.mF:hover {
+    background: linear-gradient(339deg, rgb(29, 34, 66) 0%, rgb(24, 30, 74) 74%);
+}
+
+.fActivited {
+    background: linear-gradient(339deg, rgb(29, 34, 66) 0%, rgb(24, 30, 74) 74%);
+    border: 2px #1f2651 solid;
 }

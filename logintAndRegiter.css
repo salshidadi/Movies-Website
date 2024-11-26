@@ -1,75 +1,103 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-  }
+}
 
 
 
-  body{
-    
+body {
+
     background: #111427;
 }
 
-.container{
+.container {
     width: 100%;
-    height: 100vh;
-    
-    display:flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.right_container{
-    width: 60%;
     height: 100vh;
 
     display: flex;
     align-items: center;
     justify-content: center;
+
+    @media(width <=80em) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
-.cover{
+
+.right_container {
+    width: 60%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @media(width <=80em) {
+        display: none;
+    }
+}
+
+
+.cover {
     width: 100%;
     height: 100vh;
     object-fit: cover;
 }
 
-form, label, input{
+form,
+label,
+input {
     display: flex;
     flex-direction: column;
-    
+
 }
 
-form div{
-    margin-top: 20px;
+form div {
+    margin-top: 15px;
 }
 
-form{
+form {
     width: 60%;
+
+    @media(width <=80em) {
+        width: 90%;
+    }
 }
 
-.logo{
-    position:absolute;
+.logo {
+    position: absolute;
     width: 280px;
 }
 
-.title{
+.title {
     width: 60%;
     font-size: 4rem;
     font-family: "Poppins", sans-serif;
     margin-bottom: 50px;
+
+    @media(width <=80em) {
+        width: 90%;
+        line-height: 7rem;
+    }
 }
 
-p{
+p {
     color: #eaf665;
     line-height: 40px;
+
+    @media(width <=80em) {
+        line-height: 5rem;
+    }
 }
 
 
-.left_container{
+.left_container {
 
     width: 40%;
     height: 100%;
@@ -81,15 +109,21 @@ p{
     justify-content: center;
 
     color: aliceblue;
+
+    @media(width <=80em) {
+        padding-top: 15%;
+        width: 100%;
+        padding: 2rem;
+    }
 }
 
-.labels{
+.labels {
     font-size: 1rem;
     font-family: "Poppins", sans-serif;
 
 }
 
-.links a{
+.links a {
     text-decoration: none;
     color: #8e92ab;
 
@@ -97,50 +131,92 @@ p{
     font-family: "Poppins", sans-serif;
 }
 
-.links a:hover{
+.links a:hover {
     text-decoration: underline;
     color: #b1b4cb;
 }
 
-.links{
+.links {
     margin: 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-input{
+
+
+.nameinput{
     margin-top: 10px;
     border: none;
     padding: 0.8rem;
     border-radius: 10px;
     font-family: "Poppins", sans-serif;
-    background-color: #080912;   
+    background-color: #080912;
     border: 2px solid #080912;
 
     color: #85f5fd;
 }
 
-input:focus{
+.filed{
+    margin-top: 10px;
+    border: none;
+    border-radius: 10px;
+    font-family: "Poppins", sans-serif;
+    background-color: #080912;
+    border: 2px solid #080912;
+
+    color: #85f5fd;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.filed:hover{
+    border: 2px solid #1d2242;
+}
+
+
+input:focus {
     outline: none;
     color: #85f5fd;
     border: 2px solid #1d2242;
 }
 
 
-input:hover{
+input:hover {
     border: 2px solid #1d2242;
 }
 
 
 
-.loginButton{
+.loginButton {
     font-size: 1rem;
-    background: linear-gradient(90deg,#eaf665, #85f5fd);
+    padding: 0.8rem;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #eaf665, #85f5fd);
     border: none;
     color: #0c0e1c;
     margin-top: 50px;
     cursor: pointer;
+}
+
+
+#pass{
+    width: 80%;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 10px;
+    font-family: "Poppins", sans-serif;
+    background-color: #080912;
+    border: 2px solid #080912;
+
+    color: #85f5fd;
+}
+
+#passImg{
+    width: 25px;
+    height: 25px;
 }
 
 
@@ -150,6 +226,16 @@ input:hover{
 }
 
 
-.hide{
+.hide {
     display: none;
+}
+
+.error {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    font-family: "Poppins", sans-serif;
+    display: block;
+    text-align: left;
 }
