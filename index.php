@@ -7,6 +7,7 @@ if (isset($_SESSION["user"])) {
 }
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +16,7 @@ if (isset($_SESSION["user"])) {
     <meta name="viewport" content="width=, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
-    <script defer src="index2.js"></script>
+    <script defer src="indexBeforeLogin.js"></script>
 </head>
 
 <body>
@@ -28,23 +29,14 @@ if (isset($_SESSION["user"])) {
     </div>
 
     <nav>
+        
+        <a herf= "index.php"><img src="logo.png" class="logo" alt=""></a>
 
-        <img src="logo.png" class="logo" alt="">
-
-        <div class="logedin hide ">
-
-            <a href="#" class="btn btn-1"> Home</a>
-            <a href="watchList.html" class="btn btn-1"> My watch list</a>
-            <a href="#" class="btn btn-1"> My favorite</a>
-
-            <img class="profile-photo" src="img/userIcons/icon-1.png" width="50px" height="50px">
-        </div>
-
-        <div id="loginDiv" class="notLogin ">
+        <div id="loginDiv" class="notLogin">
             <a href="login.php" class="btn btn-2"> Login</a>
             <a href="registration.php" class="btn btn-3"> Register Now</a>
         </div>
-
+        
     </nav>
 
 
@@ -69,23 +61,32 @@ if (isset($_SESSION["user"])) {
 
         <div class="search-container">
             <div class="topAndTrend">
-                <button class="tendBtn flterStyle"><img class="fire" src="img/fire.gif" width="40px" height="40px">
-                    <p>Trending</p>
-                </button>
-                <button class="rateBtn flterStyle"><img src="img/rate.gif" width="40px" height="40px">
-                    <p>Top</p>
-                </button>
+                <button class="tendBtn flterStyle"><img class="fire" src="img/fire.gif" width="40px" height="40px"><p>Trending</p></button>
+                <button class="rateBtn flterStyle"><img src="img/rate.gif" width="40px" height="40px"><p>Top</p></button>
             </div>
-
+    
             <form>
                 <input class="search-bar" type="text" placeholder="search">
+                <label><input class="checkbox" type="checkbox">search by actor</label>
             </form>
+            
+            <div class="container">
+                <div class="select-btn">
+                    <span class="btn-text">Select The Genre</span>
+                    <span class="arrow-dwn">
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </span>
+                </div>
+                <ul class="list-items">
+
+                </ul>
+            </div>
         </div>
 
     </div>
 
     <div class="movie-cards">
-
+        
     </div>
 
     <footer class="footer">

@@ -27,7 +27,7 @@ if (!isset($_SESSION["user"])) {
 
     <nav>
 
-        <img src="logo.png" class="logo" alt="">
+        <a herf= "LoggedInPage.php"><img src="logo.png" class="logo" alt=""></a>
 
         <div class="logedin">
 
@@ -78,6 +78,7 @@ if (!isset($_SESSION["user"])) {
 
             <form>
                 <input class="search-bar" type="text" placeholder="search">
+                <label><input class="checkbox" type="checkbox">search by actor</label>
             </form>
         </div>
 

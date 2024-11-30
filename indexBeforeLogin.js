@@ -38,15 +38,15 @@ getGener(genres_movie_URL);
 
 
 
+
+
+
 movieList.addEventListener('click',(e) =>{
   console.log(e.target.parentNode.className);
   console.log(e.target.parentNode.tagName);
   if(e.target.parentNode.className == 'card' || e.target.parentNode.className == 'movie-info' && e.target.tagName.toLowerCase() != 'button')
     window.location.replace(`moviePage.php?id=${e.target.parentNode.id}`);
 })
-
-
-
 
 
 
@@ -180,10 +180,6 @@ function disPlayMovies(data){
           <div class= "movie-info">
               <p class="card-titl">${element.title}</p>
               <button class="mainBtn Btn-${element.id}/ watch-trailer"><img class="i${element.id}/" src="img/play.png" width="16px" height="16px"></button>
-              <div class="towBtnContainer">
-                <button class="towBtn wL"><img src="img/unActiveAdd.png" width="12px" height="12px"><p>Watch List</p></button>
-                <button class="towBtn mF"><img src="img/unActivHeart.png" width="12px" height="12px"></button>
-              </div>
           </div>
       </div>`;
 
