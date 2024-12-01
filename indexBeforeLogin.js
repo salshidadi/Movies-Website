@@ -38,14 +38,19 @@ getGener(genres_movie_URL);
 
 
 
+function redirectToMoviePage(movieId) {
+  // Construct the URL with the movie ID as a parameter
+  const url = `moviePage.php?id=${movieId}`;
+  
+  // Redirect to the PHP file
+  window.location.href = url;
+}
 
 
 
 movieList.addEventListener('click',(e) =>{
-  console.log(e.target.parentNode.className);
-  console.log(e.target.parentNode.tagName);
   if(e.target.parentNode.className == 'card' || e.target.parentNode.className == 'movie-info' && e.target.tagName.toLowerCase() != 'button')
-    window.location.replace(`moviePage.php?id=${e.target.parentNode.id}`);
+    redirectToMoviePage(e.target.parentNode.id);
 })
 
 

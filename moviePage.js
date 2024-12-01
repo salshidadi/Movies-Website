@@ -49,130 +49,79 @@ async function disPlayMovies(data){
       const genres = data.genres.map(genre => {
         return genre.name;
       });
-      let poster;
-      let name;
-
-      if(data.belongs_to_collection == null){
-        poster = 'img/notloded.jpg';
-        name = "not found";
-      }
-      else{
-        poster = "https://image.tmdb.org/t/p/original/" + data.belongs_to_collection.poster_path;
-        name = data.belongs_to_collection.name;
-      }
       
+      console.log(genres)
 
       const card =
-        `   <!-- Movie Header -->
-        <div class="movie-header">
-            <img src=${poster} alt="Moana 2 Poster" class="movie-poster">
-            <div class="movie-info">
-                <h1>${name}</h1>
-                <p class="details">PG | ${data.release_date} ${data.spoken_languages[0].iso_639_1} | ${genres.join(',')} • 1h 40m</p>
-                <div class="rating">
-                    <span class="score">${data.vote_average}</span>
-                    <span>User ${data.vote_count}</span>
-                </div>
-                <p class="overview-title">Overview</p>
-                <p class="overview">
-                    ${data.overview}
-                </p>
-                    <div class="options">
-                        <button class="towBtn wL"><img src="img/bookmark.png" width="20px" height="20px"></button>
-                        <button class="towBtn mF"><img src="img/ActivHeart.png" width="20px" height="20px"></button>
-                    </div>
+        `   <div class="one-card">
+            <div class="poster">
+                <img src="https://image.tmdb.org/t/p/original/${data.poster_path}">
             </div>
-        </div>
-        ${await mainFunction(id)};
-`;
+
+            <div class="data">
+                <div class="part-one">
+                    <p class="title">${data.title}</p>
+                    <span class="data-set">
+                        <p><img src="img/calendar.png" width="20px" height="20px">${data.release_date}</p>
+                        <p><img src="img/history.png" width="20px" height="20px">${Math.floor(data.runtime/60)}</p>
+                        <p><img src="img/film.png" width="20px" height="20px">Movie</p>
+                    </span>
+
+                    <span class="data-set">
+                        <p id="rate-text"><img src="img/star.png" width="20px" height="20px">Rate ${(data.vote_average).toFixed(1)} (${data.vote_count}k)</p>
+                        <button class="rate">Rate</button>
+                    </span>
+                </div>
+                
+                <div class="partTow">
+
+                </div>
+                <p class="description">${data.overview}</p>
+
+                <div class="options">
+                    <button class="towBtn wL"><img src="img/bookmark.png" width="20px" height="20px"></button>
+                    <button class="towBtn mF"><img src="img/ActivHeart.png" width="20px" height="20px"></button>
+                </div>
+            </div>
+        </div>`;
   
     containor.insertAdjacentHTML("beforeend", card);
+    const genre = document.querySelector(".partTow");
 
-  }
-
-
-  const timeout = function (s) {
-    return new Promise(function (_, reject) {
-      setTimeout(function () {
-        reject(new Error(Request `took too long! Timeout after ${s} second`));
-      }, s * 1000);
+    genres.forEach(element => {
+      let type = `<p class="type">${element}</p>`
+      genre.insertAdjacentHTML("beforeend", type);
     });
-  };
-  
-  const getJSON = async function (url) {
-    try {
-      const options = {
-        method: 'GET',
-        headers: {
-          accept: 'application/json',
-          Authorization:
-            'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjOTYzOTUxZjRkMDRjZmE5Nzk5MDZjYzUxZWMzNTFjNiIsIm5iZiI6MTcyODc2NTA3MS4yMjgxMzgsInN1YiI6IjY3MGE5ZTNmZjU4YTkyMDZhYTQwODUzOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.XL8gTG5nYX4frmu8RIiUI5ikSCnLSc04MEnT5jHTuMQ',
-        },
-      };
-  
-      const fetchPro = fetch(url, options);
-      const res = await Promise.race([fetchPro, timeout(10)]);
-  
-      const data = await res.json();
-  
-      if (!res.ok) throw new Error(`${data.message} (${res.status})`);
-      return data;
-    } catch (err) {
-      throw err;
-    }
-  };
 
-
-
-
-
-  const createRecommendationsObject = function (data){
-    return {
-      id: data.id,
-      title: data.title,
-      backdrop_path: data.backdrop_path,
-      rating: data.vote_average,
-    }
+    popUP();
   }
 
-  const mainFunction = async function (id) {
-    const data = await getJSON(`
-      https://api.themoviedb.org/3/movie/${id}/recommendations?language=en-US&page=1
-    `);
-    const arr = data.results.map(result => createRecommendationsObject(result));
-    console.log(arr)            
-    const card = `      <div class="show-row">
-        <p> Rewcomendation </p>
-        
-        <div class="show-cards">
-          ${arr.map(ob => {
-            return` 
-                    <div class="show-card" data-id="${ob.id}">
-            <div class="hideOverflow">
-                <img
-                    class="card-img"
-                    src="${IMG_PATH_SMALL}${ob.backdrop_path}"
-                    alt="movie background image"
-                />
-            </div>
-            <div class="show-card-content">
-                <p class="show-card-content-title">${ob.title}</p>
-                <div class="show-card-content-icons">
-                    <div class="show-card-content-icon">
-                        <ion-icon
-                            class="show-icon"
-                            name="star-outline"
-                        ></ion-icon>
-                        <p class="show-card-content-rating">${(ob.rating).toFixed(1)}</p>
-                    </div>
-                </div>
-                <a class="go-to-product" href="product.html?id=${ob.id}">See details &rArr;</a>
-            </div>
-        </div>
-            
-          `}).join('')}
-        </div>
-      </div>
-    `;
-            return card;
-  };
+
+function popUP(){
+    // Get the modal
+  var modal = document.getElementById("myModal");
+
+  // Get the button that opens the modal
+  var btn = document.querySelector(".rate");
+
+    // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("close")[0];
+
+  // When the user clicks the button, open the modal 
+  btn.addEventListener('click',() =>{
+    modal.style.display = "block";
+  });
+
+  // When the user clicks on <span> (x), close the modal
+  span.addEventListener('click', () =>{
+    modal.style.display = "none";
+  })
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.addEventListener('click', (event) =>{
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  })
+}
+
