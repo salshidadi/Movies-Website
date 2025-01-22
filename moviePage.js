@@ -68,7 +68,7 @@ async function disPlayMovies(data){
                     </span>
 
                     <span class="data-set">
-                        <p id="rate-text"><img src="img/star.png" width="20px" height="20px">Rate ${(data.vote_average).toFixed(1)} (${data.vote_count}k)</p>
+                        <p id="rate-text" count="${data.vote_count}" rate="${(data.vote_average)}"><img src="img/star.png" width="20px" height="20px">Rate ${(data.vote_average).toFixed(1)} (${data.vote_count}k)</p>
                         <button class="rate">Rate</button>
                     </span>
                 </div>
@@ -78,10 +78,6 @@ async function disPlayMovies(data){
                 </div>
                 <p class="description">${data.overview}</p>
 
-                <div class="options">
-                    <button class="towBtn wL"><img src="img/bookmark.png" width="20px" height="20px"></button>
-                    <button class="towBtn mF"><img src="img/ActivHeart.png" width="20px" height="20px"></button>
-                </div>
             </div>
         </div>`;
   
@@ -93,13 +89,17 @@ async function disPlayMovies(data){
       genre.insertAdjacentHTML("beforeend", type);
     });
 
-    popUP();
+    popUP(data.id);
   }
 
 
-function popUP(){
+function popUP(id){
+
+
     // Get the modal
   var modal = document.getElementById("myModal");
+  modal.setAttribute("movieId", id);
+
 
   // Get the button that opens the modal
   var btn = document.querySelector(".rate");

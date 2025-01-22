@@ -6,6 +6,8 @@ if (isset($_SESSION["user"])) {
     exit();
 }
 
+
+
 ?>
 
 <!DOCTYPE html>
@@ -61,8 +63,8 @@ if (isset($_SESSION["user"])) {
 
         <div class="search-container">
             <div class="topAndTrend">
-                <button class="tendBtn flterStyle"><img class="fire" src="img/fire.gif" width="40px" height="40px"><p>Trending</p></button>
-                <button class="rateBtn flterStyle"><img src="img/rate.gif" width="40px" height="40px"><p>Top</p></button>
+                <button class="tendBtn flterStyle activated" id="trendBtn"><img class="fire" src="img/fire.gif" width="40px" height="40px"><p>Trending</p></button>
+                <button class="rateBtn flterStyle" id="rateBtn"><img src="img/rate.gif" width="40px" height="40px"><p>Top</p></button>
             </div>
     
             <form>

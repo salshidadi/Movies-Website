@@ -2,6 +2,7 @@
 
 const API_KEY = 'api_key=a7bd821b8f02542c2ebda2c469352fe0';
 const BASE_URL = 'https://api.themoviedb.org/3';
+const API_URL_TopRated = BASE_URL + '/movie/top_rated?language=en-US&page=1&' + API_KEY;
 const API_URL = BASE_URL + '/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&' + API_KEY;
 const search_URL = BASE_URL + '/search/movie?include_adult=false&' + API_KEY;
 const search_actor_URL = BASE_URL + '/search/person?' + API_KEY;
@@ -9,7 +10,8 @@ const actor_movies_url = BASE_URL + '/person/';
 const genres_movie_URL = BASE_URL + '/genre/movie/list?' + API_KEY;
 
 
-
+const trendBtn = document.querySelector('#trendBtn');
+const rateBtn = document.querySelector('#rateBtn');
 const cover = document.querySelector(".cover");
 const title = document.querySelector(".movie-title");
 const dsc = document.querySelector(".movie-dsc");
@@ -22,6 +24,26 @@ const checkbox = document.querySelector(".checkbox");
 const list = document.querySelector('.list-items');
 const selectBtn = document.querySelector(".select-btn");
 let items = document.querySelectorAll(".item");
+
+
+// trend and top rated btns
+
+trendBtn.addEventListener("click", () => {
+  if(!trendBtn.classList.contains("activated")){
+    trendBtn.classList.toggle("activated");
+    rateBtn.classList.toggle("activated");
+  }
+      
+  getMovies(API_URL);
+});
+
+rateBtn.addEventListener("click", () => {
+  trendBtn.classList.toggle("activated");
+  rateBtn.classList.toggle("activated");
+  getMovies(API_URL_TopRated);
+});
+
+
 
 
 

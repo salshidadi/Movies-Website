@@ -214,43 +214,7 @@ nav {
     color: #9ea8cb;
 }
 
-.options{
-    width: 10%;
-    display: flex;
-    gap: 1rem;
-}
 
-.towBtn{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    width: 70px;
-    height: 70px;
-    border-radius: 50px;
-    padding: 1.9rem;
-    margin-top: 20px;
-    cursor: pointer;
-}
-
-.wL{
-    background: #080d1b;
-    transition: 0.3s;
-}
-
-.mF{
-    background: #5e283c;
-    transition: 0.3s;
-}
-
-
-.wL:hover {
-    background: #111c3d;
-}
-
-.mF:hover {
-    background: #7b334e;
-}
 
 
 .modal {

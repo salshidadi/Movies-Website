@@ -513,6 +513,11 @@ form label{
     border: 2px #4a5797 solid;
 }
 
+.activated{
+    background-color: #0e164b;
+    border: 2px #4a5797 solid;
+}
+
 .fire {
     margin-bottom: 8px;
 }

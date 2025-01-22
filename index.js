@@ -3,12 +3,16 @@
 const API_KEY = 'api_key=a7bd821b8f02542c2ebda2c469352fe0';
 const BASE_URL = 'https://api.themoviedb.org/3';
 const API_URL = BASE_URL + '/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&' + API_KEY;
+const API_URL_TopRated = BASE_URL + '/movie/top_rated?language=en-US&page=1&' + API_KEY;
+
 const search_URL = BASE_URL + '/search/movie?include_adult=false&' + API_KEY;
 const search_actor_URL = BASE_URL + '/search/person?' + API_KEY;
 const actor_movies_url = BASE_URL + '/person/';
 const genres_movie_URL = BASE_URL + '/genre/movie/list?' + API_KEY;
 
 
+const trendBtn = document.querySelector('#trendBtn');
+const rateBtn = document.querySelector('#rateBtn');
 
 const cover = document.querySelector(".cover");
 const title = document.querySelector(".movie-title");
@@ -24,7 +28,6 @@ const selectBtn = document.querySelector(".select-btn");
 let items = document.querySelectorAll(".item");
 
 
-
 const options = { method: 'GET', headers: { accept: 'application/json' } };
 
 
@@ -35,6 +38,24 @@ getMovies(API_URL);
 getGener(genres_movie_URL);
 
 
+
+
+// trend and top rated btns
+
+trendBtn.addEventListener("click", () => {
+  if(!trendBtn.classList.contains("activated")){
+    trendBtn.classList.toggle("activated");
+    rateBtn.classList.toggle("activated");
+  }
+      
+  getMovies(API_URL);
+});
+
+rateBtn.addEventListener("click", () => {
+  trendBtn.classList.toggle("activated");
+  rateBtn.classList.toggle("activated");
+  getMovies(API_URL_TopRated);
+});
 
 
 
@@ -176,7 +197,11 @@ function disPlayMovies(data){
   movieList.innerHTML = '';
 
   data.forEach(element => {
+    
     let rate = element.vote_average;
+   //let rateObj = {id:element.id};
+    //let rate = checkRate(rateObj);
+    //rate = rate!=-1 ? rate : element.vote_average; 
 
     const card =
       `   <div class="card" id=${element.id}>
@@ -309,3 +334,50 @@ function getGener(url){
   })
   .catch(err => console.error(err)); 
 }
+
+
+movieList.addEventListener('click', (e) => {
+  if (e.target.className == "towBtn wL" || e.target.parentNode.className == "towBtn wL"){
+      const cardElement = e.target.closest(".card");
+      const movieId = cardElement.getAttribute('id'); // Get the movie ID from the card class
+
+      const data = new FormData();
+      data.append("movie_id", movieId);
+
+      fetch("add_to_watchlist.php", {
+          method: "POST",
+          body: data,
+      })
+          .then((response) => response.text())
+          .then((data) => {
+              alert(data); // Display success or error message from PHP
+          })
+          .catch((err) => {
+              console.error("Error:", err);
+          });
+  }
+});
+
+movieList.addEventListener("click", (e) => {
+  if (e.target.className == "towBtn mF" || e.target.parentNode.className == "towBtn mF") {
+      const cardElement = e.target.closest(".card");
+      const movieId = cardElement.getAttribute('id'); // Get movie ID from card class
+
+      const data = new FormData();
+      data.append("movie_id", movieId);
+
+      fetch("add_to_favorite.php", {
+          method: "POST",
+          body: data,
+      })
+          .then((response) => response.text())
+          .then((data) => {
+              console.log(data); // Log the response to see what's returned
+              alert(data); // Display the actual response message
+          })
+          .catch((err) => {
+              console.error("Error:", err);
+              alert("An error occurred while adding to favorites.");
+          });
+  }
+});

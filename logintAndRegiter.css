@@ -22,27 +22,16 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-
-    @media(width <=80em) {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
 }
-
 
 .right_container {
     width: 60%;
+    height: 100vh;
 
     display: flex;
     align-items: center;
     justify-content: center;
-
-    @media(width <=80em) {
-        display: none;
-    }
 }
-
 
 .cover {
     width: 100%;
@@ -59,15 +48,11 @@ input {
 }
 
 form div {
-    margin-top: 15px;
+    margin-top: 20px;
 }
 
 form {
     width: 60%;
-
-    @media(width <=80em) {
-        width: 90%;
-    }
 }
 
 .logo {
@@ -80,20 +65,11 @@ form {
     font-size: 4rem;
     font-family: "Poppins", sans-serif;
     margin-bottom: 50px;
-
-    @media(width <=80em) {
-        width: 90%;
-        line-height: 7rem;
-    }
 }
 
 p {
     color: #eaf665;
     line-height: 40px;
-
-    @media(width <=80em) {
-        line-height: 5rem;
-    }
 }
 
 
@@ -109,12 +85,6 @@ p {
     justify-content: center;
 
     color: aliceblue;
-
-    @media(width <=80em) {
-        padding-top: 15%;
-        width: 100%;
-        padding: 2rem;
-    }
 }
 
 .labels {
@@ -143,9 +113,7 @@ p {
     justify-content: space-between;
 }
 
-
-
-.nameinput{
+input {
     margin-top: 10px;
     border: none;
     padding: 0.8rem;
@@ -156,26 +124,6 @@ p {
 
     color: #85f5fd;
 }
-
-.filed{
-    margin-top: 10px;
-    border: none;
-    border-radius: 10px;
-    font-family: "Poppins", sans-serif;
-    background-color: #080912;
-    border: 2px solid #080912;
-
-    color: #85f5fd;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.filed:hover{
-    border: 2px solid #1d2242;
-}
-
 
 input:focus {
     outline: none;
@@ -192,31 +140,11 @@ input:hover {
 
 .loginButton {
     font-size: 1rem;
-    padding: 0.8rem;
-    border-radius: 10px;
     background: linear-gradient(90deg, #eaf665, #85f5fd);
     border: none;
     color: #0c0e1c;
     margin-top: 50px;
     cursor: pointer;
-}
-
-
-#pass{
-    width: 80%;
-    padding: 0.8rem;
-    border: none;
-    border-radius: 10px;
-    font-family: "Poppins", sans-serif;
-    background-color: #080912;
-    border: 2px solid #080912;
-
-    color: #85f5fd;
-}
-
-#passImg{
-    width: 25px;
-    height: 25px;
 }
 
 

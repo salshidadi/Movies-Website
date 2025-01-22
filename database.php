@@ -6,7 +6,7 @@ $db_user = "root";
 
 $db_password = "";
 
-$db_name = "login_register";
+$db_name = "mydb";
 
 $conn = "";
 
@@ -17,8 +17,7 @@ try {
         $db_password,
         $db_name
     );
-    if($conn){
-        
+    if ($conn) {
     }
 } catch (mysqli_sql_exception) {
     echo "unable to connect to the database<br>";

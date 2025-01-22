@@ -1,7 +1,8 @@
 <?php
 session_start();
+
 if (!isset($_SESSION["user"])) {
-    header("Location:index.php");
+    header("Location: index.php");
     exit;
 }
 ?>
@@ -11,7 +12,7 @@ if (!isset($_SESSION["user"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Watchlist</title>
+    <title>My Favorites</title>
     <link rel="stylesheet" href="list2.css" type="text/css">
 
     <style>
@@ -19,16 +20,13 @@ if (!isset($_SESSION["user"])) {
             background-color: #8b1d31; /* Dark red background */
             color: white; /* White text */
             font-size: 14px; /* Slightly larger font */
-            padding: 12px 30px; /* Increased padding for more space */
+            padding: 10px 20px; /* Spacing inside the button */
             border: none; /* Remove the default border */
             border-radius: 5px; /* Rounded corners */
             cursor: pointer; /* Change cursor on hover */
             transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition for hover effects */
             text-align: center;
             display: inline-block;
-            width: auto; /* Allow width to grow based on content */
-            min-width: 200px; /* Ensure the button is at least 200px wide */
-            font-family:Arial, Helvetica, sans-serif;   
         }
 
         .towBtn:hover {
@@ -46,10 +44,10 @@ if (!isset($_SESSION["user"])) {
         }
 
         #search-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
         }
 
         #search-bar {
@@ -79,16 +77,17 @@ if (!isset($_SESSION["user"])) {
     </style>
 </head>
 
+
 <body>
     <div class="container">
 
         <nav>
-            <img src="logo.png" class="logo" alt="Logo">
+            <img src="logo.png" class="logo" alt="">
 
             <div class="logedin">
-                <a href="index.php" class="btn btn-1"> Home</a>
-                <a href="watchList.php" class="btn btn-1"> My watch list</a>
-                <a href="favoriteMovie.php" class="btn btn-1"> My favorite</a>
+                <a href="index.php" class="btn btn-1">Home</a>
+                <a href="watchList.php" class="btn btn-1">My Watch List</a>
+                <a href="favoriteMovie.php" class="btn btn-1">My Favorites</a>
                 <a href="logout.php" class="btn btn-1"> Logout</a>
 
                 <img class="profile-photo" src="img/userIcons/icon-1.png" width="50px" height="50px">
@@ -96,16 +95,16 @@ if (!isset($_SESSION["user"])) {
         </nav>
 
         <div id="search-container">
-            <input type="text" id="search-bar" placeholder="Search watchlist movies..." />
+            <input type="text" id="search-bar" placeholder="Search favorite movies..." />
         </div>
 
         <div class="innerContainer">
             <div class="empty hide">
                 <img src="img/ghost.png" width="200px">
-                <p>add some movie to watch later</p>
+                <p>Add some movies to your favorites list!</p>
             </div>
 
-            <div class="watch-list-cards">
+            <div class="favorite-movies-cards">
                 <!-- Movie cards will be dynamically added here -->
             </div>
         </div>
@@ -114,14 +113,14 @@ if (!isset($_SESSION["user"])) {
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const watchListContainer = document.querySelector('.watch-list-cards');
+            const favoriteMoviesContainer = document.querySelector('.favorite-movies-cards');
             const emptyMessage = document.querySelector('.empty');
             const searchBar = document.getElementById('search-bar');
-
+            
             let movieData = []; // Store movie data globally
 
-            // Fetch the watchlist data for the logged-in user
-            fetch('get_watchlist.php')
+            // Fetch the favorite movies for the logged-in user
+            fetch('get_favorites.php')
                 .then(response => response.json())
                 .then(data => {
                     if (data.error) {
@@ -133,13 +132,13 @@ if (!isset($_SESSION["user"])) {
                     movieData = data; // Store the fetched data in the global variable
 
                     if (data.length === 0) {
-                        // Show empty message if no movies in the watchlist
+                        // Show empty message if no favorite movies exist
                         emptyMessage.classList.remove('hide');
                     } else {
                         // Hide the empty message
                         emptyMessage.classList.add('hide');
 
-                        // Populate the watchlist container with movie cards
+                        // Populate the favorite movies container with movie cards
                         data.forEach(movie => {
                             const card = `
                                 <div class="one-card" title="${movie.title}" id="movie-${movie.MovieID}">
@@ -152,30 +151,32 @@ if (!isset($_SESSION["user"])) {
                                     </div>
 
                                     <div class="options">
-                                        <button class="towBtn wL remove" data-movie-id="${movie.MovieID}">
-                                            Remove From My Watch List
+                                        <button class="towBtn fav remove" data-movie-id="${movie.MovieID}">
+                                            Remove From My Favorites
                                         </button>
                                     </div>
                                 </div>
                             `;
 
-                            watchListContainer.insertAdjacentHTML('beforeend', card);
+                            favoriteMoviesContainer.insertAdjacentHTML('beforeend', card);
                         });
                     }
                 })
                 .catch(err => {
-                    console.error('Error fetching watchlist:', err);
+                    console.error('Error fetching favorites:', err);
                     emptyMessage.classList.remove('hide');
                 });
 
             // Event delegation for remove buttons
-            watchListContainer.addEventListener('click', (e) => {
+            favoriteMoviesContainer.addEventListener('click', (e) => {
                 if (e.target.classList.contains('remove')) {
                     const movieID = e.target.getAttribute('data-movie-id');
                     const card = document.getElementById(`movie-${movieID}`);
 
+                    console.log(`Attempting to remove movie with ID: ${movieID}`);
+
                     // Remove the movie from the database
-                    fetch('remove_from_watchlist.php', {
+                    fetch('remove_from_favorites.php', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -184,12 +185,14 @@ if (!isset($_SESSION["user"])) {
                     })
                         .then(response => response.json())
                         .then(result => {
-                            if (result.success) {
-                                // Remove the card from the DOM
-                                card.remove();
+                            console.log("Server response:", result);
 
-                                // Show empty message if no more movies left
-                                if (watchListContainer.children.length === 0) {
+                            if (result.success) {
+                                console.log(`Movie with ID ${movieID} removed successfully`);
+                                card.remove(); // Remove card dynamically
+
+                                // Show empty message if no more favorite movies left
+                                if (favoriteMoviesContainer.children.length === 0) {
                                     emptyMessage.classList.remove('hide');
                                 }
                             } else {
@@ -203,7 +206,7 @@ if (!isset($_SESSION["user"])) {
             // Dynamic search functionality for filtering movies
             searchBar.addEventListener('input', () => {
                 const searchTerm = searchBar.value.toLowerCase(); // Get the search term
-                const movieCards = watchListContainer.querySelectorAll('.one-card');
+                const movieCards = favoriteMoviesContainer.querySelectorAll('.one-card');
 
                 movieCards.forEach((card, index) => {
                     const movieTitle = movieData[index].title.toLowerCase(); // Get the movie title
@@ -224,7 +227,6 @@ if (!isset($_SESSION["user"])) {
             });
         });
     </script>
-
 </body>
 
 </html>
